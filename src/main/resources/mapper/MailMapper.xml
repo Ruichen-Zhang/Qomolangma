@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaclimb.Qomolangma.mapper.MailMapper">
+    <resultMap id="BaseResultMap" type="com.javaclimb.Qomolangma.domain.Mail" >
+        <id column="id" jdbcType="INTEGER" property="id"/>
+
+        <result column="phone_num" jdbcType="CHAR" property="phoneNum"/>
+        <result column="email" jdbcType="CHAR" property="email"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,email,phone_num,create_time
+    </sql>
+
+    <insert id="insert" parameterType="com.javaclimb.Qomolangma.domain.Mail">
+        insert into mail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+
+
+            <if test="email != null">
+                email,
+            </if>
+            <if test="phoneNum != null">
+                phone_num,
+            </if>
+            create_time,
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="email != null">
+                #{email},
+            </if>
+            <if test="phoneNum != null">
+                #{phoneNum},
+            </if>
+
+            now(),
+        </trim>        
+    </insert>
+    
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from mail
+        where id=#{id}
+    </delete>
+
+
+
+    <select id="verifyPassword" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        select count(*)
+        from mail
+        where email = #{email} and phone_num = #{phoneNum} and TIMESTAMPDIFF(MINUTE,now(),create_time) &lt; 15
+    </select>
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

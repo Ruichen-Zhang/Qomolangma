@@ -1,0 +1,36 @@
+@import "var.scss";
+
+.home {
+  margin-top: $header-height - 10px;
+  .section {
+    width: 100%;
+
+    padding: $content-padding;
+    background-color: $color-white;
+    box-sizing: border-box;
+    margin-bottom: -5%;
+    .section-title {
+      height: 60px;
+      line-height: 60px;
+      padding-top: 10px;
+      font-size: 18px;
+      font-weight: 900;
+      margin-left: 5%;
+      color: $color-black;
+      box-sizing: border-box;
+    }
+  }
+  .top {
+    width: 100%;
+    margin-top: 20px;
+    padding: $content-padding;
+    background-color: $color-white;
+    box-sizing: border-box;
+    .imgtop{
+      width: 95%;
+      margin-left:3%;
+      margin-top: 1%;
+      margin-bottom: -5%;
+    }
+  }
+}
